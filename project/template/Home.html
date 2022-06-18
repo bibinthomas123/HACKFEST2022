@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{%block title %}Home{% endblock %}
+{%block head %}
+
+
+<style>
+    :root {
+        --blue: #233BD7;
+        --white: #ffffff;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        height: 100vh;
+        width: 100%;
+    }
+
+    .navbar a {
+        font-family: 'Work Sans', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 23px;
+        line-height: 38px;
+        letter-spacing: -0.02em;
+        text-decoration: none;
+        color: var(--blue);
+    }
+
+    .navbar h1 {
+        font-family: 'Voltaire', sans-serif;
+    }
+
+    .welcome {
+        position: absolute;
+        width: 476px;
+        height: 106px;
+        left: 63px;
+        top: 249px;
+
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 99px;
+        line-height: 135px;
+        letter-spacing: -0.035em;
+        text-transform: capitalize;
+    }
+
+    .forecast {
+        position: absolute;
+        width: 304px;
+        height: 93px;
+        left: 76px;
+        top: 355px;
+
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 56px;
+        line-height: 76px;
+        letter-spacing: -0.01em;
+
+        color: #797878;
+    }
+
+    .discover {
+        position: absolute;
+        width: 232px;
+        height: 70px;
+        left: 80px;
+        top: 448px;
+        background: var(--blue);
+        border: none;
+        border-radius: 11px;
+        color: white;
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 121.18%;
+        /* identical to box height, or 39px */
+
+        text-align: center;
+        letter-spacing: -0.08em;
+    }
+
+    .current_season {
+        position: absolute;
+        width: 242px;
+        height: 57px;
+        left: 23px;
+        top: 661px;
+
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 33px;
+        letter-spacing: -0.08em;
+
+        color: #615B5B;
+
+    }
+
+    .image img {
+        position: absolute;
+        width: 910px;
+        height: 590px;
+        left: 573px;
+
+    }
+</style>
+{% endblock %}
+
+{%block body%}
+
+<nav>
+    <div class="container-fluid m">
+        <div class="navbar  w-100 p-3" style="letter-spacing: 2px; word-spacing:10px">
+            <!-- <h1 style="color:
+                var(--blue)">CH</h1> -->
+            <img src="/static/images/logo.png" style="height:66px;width:auto" alt="">
+            <ul>
+                <a href="/aboutUs" style="padding-right:23px;">AboutUs</a>
+                <a href="/feature">Features</a>
+                <!-- <a href="">CH</a> -->
+
+            </ul>
+        </div>
+    </div>
+    <div class="wel">
+        <h1 class="welcome">weather</h1>
+        <h3 class="forecast">forecast</h3>
+
+        <button class="discover"><a href="/search"
+                style="color: white;font-family:'open sans'; text-decoration:none;padding:10px">Discover</a></button>
+    </div>
+    <div class="image">
+        <img src="/static/images/undraw_Researching_re_fuod.png" alt="">
+    </div>
+
+    <div class="current_season">
+        <div class="season">
+            <p>current season / <span style="color: var(--blue);">{{current_season}}</span> </p>
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+
+    
+{%endblock %}

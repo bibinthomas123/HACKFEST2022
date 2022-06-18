@@ -1,0 +1,348 @@
+{% extends "base.html" %}
+{%block title %}Results{% endblock %}
+{%block head %}
+
+<script src="/project/static/js/index.js"></script>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        color: white;
+        box-sizing: border-box;
+    }
+
+    body {
+        height: 100vh;
+        width: 100%;
+        background: url("\\static\\images\\glass-1655320810485-6873.jpg");
+        overflow-x: hidden;
+    }
+
+    li,
+    ul {
+        color: #000000;
+        line-height: 25px;
+        margin-top: 10px;
+    }
+
+    #temp_data,
+    #temp {
+        position: absolute;
+        width: 225px;
+        height: 164px;
+        left: 60px;
+        top: 470px;
+
+        font-family: 'Work Sans';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 150px;
+        line-height: 176px;
+        letter-spacing: -0.02em;
+
+        color: #FFFFFF;
+    }
+
+    .place_name h1,
+    p {
+        position: absolute;
+        width: 293px;
+        height: 101px;
+        left: 288px;
+        top: 511px;
+        font-family: 'Lato';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 100px;
+        line-height: 115px;
+        letter-spacing: 0.01em;
+        padding-left: 50px;
+        color: #FFFFFF;
+
+
+    }
+
+    .side_bar {
+        position: absolute;
+        width: 633px;
+        height: 720px;
+        left: 902px;
+        top: 0px;
+        background: rgba(85, 100, 115, 0.49);
+        mix-blend-mode: normal;
+        backdrop-filter: blur(14px);
+    }
+
+    #line {
+        position: absolute;
+        width: 443px;
+        height: 0px;
+        left: 940px;
+        top: 120px;
+        border: 0.5px solid #FFFFFF;
+        transform: rotate(-0.25deg);
+    }
+
+    .city {
+        position: absolute;
+        width: 397px;
+        height: 57px;
+        left: 924px;
+        top: 147px;
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 28px;
+        line-height: 38px;
+        letter-spacing: 0.02em;
+        color: #FFFFFF;
+        mix-blend-mode: normal;
+    }
+
+    .cloudy {
+        position: absolute;
+        width: 186px;
+        height: 39px;
+        left: 937px;
+        top: 450px;
+
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 28px;
+        line-height: 38px;
+        /* identical to box height */
+
+        letter-spacing: 0.02em;
+
+        color: #FFFFFF
+    }
+
+    .val {
+        position: absolute;
+        width: 293px;
+        height: 101px;
+        left: 1200px;
+        top: 412px;
+        font-family: 'Lato';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 115px;
+        letter-spacing: 0.01em;
+        padding-left: 50px;
+        color: #FFFFFF;
+    }
+</style>
+{% endblock %}
+
+
+
+{%block body%}
+<div class="cont">
+    <div class="weather">
+        <h1 id="temp_data">30</h1>
+        <span id="temp" style="font-size: 90px; position:absolute;left:235px;top:425px"> <sup>o</sup>C</span>
+
+    </div>
+    <div class="place_name">
+        <h1 id="place_name">Delhi</h1>
+        <p style="
+            font-size: 32px;
+            width: 396px;
+            height: 38px;
+            left: 263px;
+            top: 583px;
+            font-weight: 100;
+            font-style: normal;
+        
+            ">06:09 -Thu, 16 -Jun’22 </p>
+    </div>
+
+    <img src="/static/images/rain.png" style="
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        left: calc(50% - 64px/2 - 90px);
+        top: calc(50% - 64px/2 + 230px); 
+        
+        
+         ">
+
+    <div class="side_bar">
+        <p style="
+            position: absolute;
+            width: auto;
+            height: 40px;
+            left: 9px;
+            top: 60px;
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 28px;
+            line-height: 38px;
+            letter-spacing: 0.02em;
+            color: #FFFFFF;
+            ">Another Location</p>
+
+    </div>
+    <p id="line"></p>
+    <div class="back" style="
+    position: absolute;
+    width: 100px;
+    height: 83px;
+    left: 1436px;
+    top: 0px;
+    background: #5A707E;
+    mix-blend-mode: normal;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    
+    
+    ">
+        <a href="/search" style="padding: 20px;"><img src="/static/images/search.png" alt=""></a>
+    </div>
+    <div class="cities">
+        <p class="city">Hyderbad</p>
+        <p class="city" style="margin-top:51px">Chintal</p>
+        <p class="city" style="margin-top:101px">Alwal</p>
+        <p class="city" style="margin-top:151px">Gatkesar</p>
+    </div>
+    <p id="line" style="top:361px;"></p>
+</div>
+<div class="weather_details">
+    <h1 style="
+        position: absolute;
+width: 337px;
+height: 60px;
+left: 969px;
+top: 382px;
+font-family: 'Open Sans';
+font-style: normal;
+font-weight: 700;
+font-size: 28px;
+line-height: 38px;
+letter-spacing: 0.02em;
+
+color: #FFFFFF;">weather Details </h1>
+
+    <p class="cloudy ">Cloudy</p>
+    <p class="cloudy " style="top:508px;">Wind</p>
+    <p class="cloudy " style="top:575px;">Humidty</p>
+    <p class="cloudy " style="top:639px;">Rain</p>
+
+</div>
+<div class="values">
+    <p class="val">86%</p>
+    <p class="val" style="top:469px;">86%</p>
+    <p class="val" style="top:533px;">25%</p>
+    <p class="val" style="top:593px;">36%</p>
+</div>
+
+<note style="position:absolute ;bottom:10px;font-family:'lato',sans-serif;letter-spacing:2px">
+    * Temperature updates every 10 mins
+</note>
+
+<div class="dos_and_donts"
+    style="width: 107%; height:129vh;background-color:rgb(255, 255, 255);position:relative;bottom:-100%">
+    <div class="container">
+        <div class="left" style="
+        position: absolute;
+        width: 474px;
+        height: 715px;
+        left: 179px;
+        top: 154px;
+        background: #ffffff;
+        box-shadow: 0px 4px 61px -13px rgb(0 0 0 / 25%);
+        border-radius: 38px;">
+            <p style="
+            position: absolute;
+            width: 336px;
+            height: 95px;
+            left: -11px;
+            top: 81px;
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 36px;
+            line-height: 49px;
+            letter-spacing: 0.02em;
+            color: #000000;">Do's</p>
+            <div class="green-line" style="position: absolute;
+            width: 386px;
+            height: 5px;
+            left: 22px;
+            top: 139px;
+            background: #28C041;">
+
+            <ul style="padding-top:25px ;">
+                <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque, voluptas! Eveniet quasi, doloremque
+                    officia ea animi nam sed illo fuga.</li>
+                <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque, voluptas! Eveniet quasi, doloremque
+                    officia ea animi nam sed illo fuga.</li>
+                <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque, voluptas! Eveniet quasi, doloremque
+                    officia ea animi nam sed illo fuga.</li>
+                <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque, voluptas! Eveniet quasi, doloremque
+                    officia ea animi nam sed illo fuga.</li>
+
+            </ul>
+            </div>
+
+        </div>
+        <div class="right" style="
+        position: absolute;
+        width: 474px;
+        height: 715px;
+        left: 890px;
+        top: 154px;
+        background: #ffffff;
+        box-shadow: 0px 4px 61px -13px rgb(0 0 0 / 25%);
+        border-radius: 38px;
+       
+       ">
+            <p style="
+       position: absolute;
+       width: 336px;
+       height: 95px;
+       left: -11px;
+       top: 81px;
+       font-family: 'Open Sans';
+       font-style: normal;
+       font-weight: 600;
+       font-size: 36px;
+       line-height: 49px;
+       letter-spacing: 0.02em;
+       color: #000000;">Don't</p>
+
+            <div class="red-line" style="
+     position: absolute;
+     width: 386px;
+     height: 5px;
+     left: 20px;
+     top: 144px;
+     background: #FC1E1E;
+     
+     
+     ">
+                <ul style="padding-top:25px ;">
+                    <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque, voluptas! Eveniet quasi,
+                        doloremque officia ea animi nam sed illo fuga.</li>
+                    <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque, voluptas! Eveniet quasi,
+                        doloremque officia ea animi nam sed illo fuga.</li>
+                    <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque, voluptas! Eveniet quasi,
+                        doloremque officia ea animi nam sed illo fuga.</li>
+                    <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque, voluptas! Eveniet quasi,
+                        doloremque officia ea animi nam sed illo fuga.</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+{%endblock %}

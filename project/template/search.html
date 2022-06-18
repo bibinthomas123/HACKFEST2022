@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+{%block title %}Search{% endblock %}
+
+{%block head %}
+
+<style>
+    
+            :root {
+                --blue: #233BD7;
+                --white: #ffffff;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            body {
+                height: 100vh;
+                width: 100%;
+                overflow: hidden;
+            }
+
+            .navbar a {
+                font-family: 'Work Sans', sans-serif;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 23px;
+                line-height: 38px;
+                letter-spacing: -0.02em;
+                text-decoration: none;
+                color: var(--white);
+            }
+
+            .navbar h1 {
+                font-family: 'Voltaire', sans-serif;
+            }
+            
+            .image img {
+                position: absolute;
+                width: 910px;
+                height: 590px;
+                left: 573px;
+            }
+
+            .image_green {
+
+                z-index: -1;
+            }
+
+            #search {
+                position: absolute;
+                width: 714px;
+                height: 65px;
+                left: 374px;
+                top: 198px;
+                border: none;
+                background: #DBDBDB;
+                border-radius: 40px;
+                padding-left: 20px;
+                font-family: 'Open Sans', sans-serif;
+                font-style: normal;
+                font-size: 20px;
+                line-height: 44px;
+                letter-spacing: -0.02em;
+                color: rgba(81, 79, 79, 0.41);
+            }
+
+            .btn {
+                position: absolute;
+                width: 55px;
+                height: 55px;
+                left: 1027px;
+                top: 203px;
+                background: rgba(56, 82, 57, 0.71);
+                border-radius: 50%;
+
+            }
+
+            .white {
+                background-color: #ffffff;
+                width: 100%;
+                height: 400px;
+                position: absolute;
+                bottom: 0;
+                z-index: -1;
+            }
+
+            .textdid {
+                position: absolute;
+                width: 645px;
+                height: 104px;
+                left: 31px;
+                top: 360px;
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 49px;
+                line-height: 87px;
+                letter-spacing: -0.02em;
+                color: #000000;
+                
+            }
+
+            .know_text {
+                position: absolute;
+                width: 600px;
+                height: 463px;
+                left: 52px;
+                top: 470px;
+                
+                
+                font-weight: 0;
+                font-size: 20px;
+                
+                
+                color: #000000;
+                
+            }
+
+            .illustration {
+                position: absolute;                
+                left:1000px;
+                top:322px;
+            }
+            
+            .illustration img{
+                width: 400px;
+                height:400px;
+            }
+        </style>
+        {%endblock%}
+    
+
+    
+        {%block body%}
+        <nav>
+            <div class="container-fluid m">
+            <div class="navbar  w-100 p-3" style="letter-spacing: 2px; word-spacing:10px">
+                <!-- <h1 style="color:
+                    var(--blue)">CH</h1> -->
+                    <img src="/static/images/logo.png" style="height:66px;width:auto" alt="">
+                    <ul>
+                        <a href="/aboutUs" style="padding-right:23px;">AboutUs</a>
+                        <a href="/feature">Features</a>
+                        <!-- <a href="">CH</a> -->
+                        
+                    </ul>
+            </div>
+        </div>
+    </nav>
+    <section>
+        <div class="container image-green">
+            <img src="/static/images/green-leaves-abstract-pattern-vector-1254544.jpg" style="
+            position: absolute;
+            width: 100%;
+            
+            left: 0px;
+            top: 0px;
+            z-index:-1" alt="">
+
+        </div>
+
+        <div class="search">
+            <div class="text">
+                <input type="text" name="text" id="search" placeholder="Enter the place area...">
+                <a href="/results">
+                    <div class="btn">
+                        <img src="/static/images/search.png" style="padding:8px 0px 0px 2px" alt="">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    
+    <section>
+        <div class="white"> </div>
+    </section>
+
+    <article>
+        <div class="know">
+            <h1 class="textdid">DID YOU KNOW ?</h1>
+            <p class="know_text">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis doloribus atque quis ipsam et at
+                fugiat. Cumque maxime iusto accusamus, voluptatum facilis maiores officiis consectetur commodi totam,
+                obcaecati repellat labore.
+            </p>
+            <div class="illustration">
+                
+                <img src="/static/images/illu.jpg" alt="">
+            </div>
+        </div>
+        
+    </article>
+    
+    {%endblock%}

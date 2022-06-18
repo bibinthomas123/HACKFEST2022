@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{%block title %}About us {% endblock %}
+{%block head %}
+
+
+<style>
+    :root {
+        --blue: #233BD7;
+        --white: #ffffff;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        height: 100vh;
+        width: 100%;
+    }
+
+    .navbar a {
+        font-family: 'Work Sans', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 23px;
+        line-height: 38px;
+        letter-spacing: -0.02em;
+        text-decoration: none;
+        color: var(--blue);
+    }
+
+    .navbar h1 {
+        font-family: 'Voltaire', sans-serif;
+    }
+
+</style>
+{%endblock%}
+
+{%block body%}
+    <nav>
+        <div class="container-fluid m">
+            <div class="navbar  w-100 p-3" style="letter-spacing: 2px; word-spacing:10px">
+                <!-- <h1 style="color:
+                    var(--blue)">CH</h1> -->
+                <img src="/static/images/logo.png" style="height:66px;width:auto" alt="">
+                <ul>
+                    <a href="/" style="padding-right:23px;">Home</a>
+                    <a href="/feature">Features</a>
+                    <!-- <a href="">CH</a> -->
+    
+                </ul>
+            </div>
+        </div>
+  
+   
+    <div class="conatiner ">
+        <p style="
+        position: absolute;
+        width: 445px;
+    height: 106px;
+    left: 89px;
+    top: 215px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 96px;
+    line-height: 131px;
+    letter-spacing: -0.035em;
+
+    color: #000000;">About Us </p>
+
+        <p style="position: absolute;
+        width: 710px;
+        height: 159px;
+        left: 89px;
+        top: 352px;
+        
+        font-family: 'Lato';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        letter-spacing: 0.05em;
+        
+        color: #000000;
+        
+        mix-blend-mode: normal;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the . It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+    </div>
+
+    <div class="img" ><img src="/static/images/5484597.jpg" style="
+        position: absolute;
+    width: 479px;
+    height: 504px;
+    left: 948px;
+    top: 202px;" alt="">
+</div>
+</nav>
+
+{% endblock %}
