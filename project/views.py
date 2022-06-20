@@ -5,14 +5,29 @@ import time
 from django.shortcuts import render
 from flask import Blueprint, render_template
 from datetime import date
-
+from test import *
+from datetime import date, datetime
 
 views = Blueprint('views', __name__)
 
 
 @views.route('/')
 def home():
-    return render_template("Home.html")
+    Y = date.today().year    # dummy leap year to allow input X-02-29 (leap day)
+    seasons = [('winter', (date(Y,  1,  1),  date(Y,  3, 20))),
+            ('spring', (date(Y,  3, 21),  date(Y,  6, 20))),
+            ('summer', (date(Y,  6, 21),  date(Y,  9, 22))),
+            ('autumn', (date(Y,  9, 23),  date(Y, 12, 20))),
+            ('winter', (date(Y, 12, 21),  date(Y, 12, 31)))]
+
+    def get_season(now):
+        if isinstance(now, datetime):
+          now = now.date()
+          now = now.replace(year=Y)
+        return next(season for season, (start, end) in seasons
+                if start <= now <= end)
+
+    return render_template("Home.html" ,current_season = get_season(date.today()) )
 
 
 @views.route('/search')
@@ -22,18 +37,10 @@ def search():
 
 @views.route('/results')
 def results():
-
-
-
     geolocator = Nominatim(user_agent="MyApp")
-
     location = geolocator.geocode("Hyderabad")
-
     latitude=  location.latitude
     longitude= location.longitude
-    print(location.latitude)
-    print(location.longitude)
-
     t = time.localtime()
     current_time = time.strftime("%I:%M", t)
     today = date.today()

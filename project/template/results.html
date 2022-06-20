@@ -4,58 +4,109 @@
 
 <!-- <script src="/project/static/js/index.js"></script> -->
 <script>
-    
-    //Javascript code    
-    let queryUrl = "https://api.openweathermap.org/data/2.5/onecall?";
-    let latitude = JSON.parse('{{ latitude | tojson }}'); // jinja into js 
-    let longitude = JSON.parse('{{  longitude| tojson }}');
+  
 
-    console.log(latitude,longitude)
-    let lat = `lat=${latitude}&`;
-    let lon = `lon=${longitude}&`;
-    let apiOptions = "units=metric&exclude=minutely,alerts&";
-    let apiKey = "appid=dbb76c5d98d5dbafcb94441c6a10236e";
-    let file = queryUrl + lat + lon + apiOptions + apiKey;
-    
-    fetch(file)
-    .then((response) => response.json())
-    .then((data) => console.log(data))
-    
-    
-    fetch(file)
-    .then((response) => response.json())
-    .then((data) => {
-        // Weather main data
-        
-        let main = data.current.weather[0].main;
-        let description = data.current.weather[0].description;
-        let temp = Math.round(data.current.temp);
-        let cloudy = data.current.clouds
-        let pressure = data.current.pressure;
-        let humidity = data.current.humidity;
-        let name = "chintal";
-        let rain = data.daily[0].rain;     
-        
-        // document.getElementById("wrapper-description").innerHTML = description;
-        document.getElementById("temp_data").innerHTML = temp;
-        document.getElementById("val-pressure").innerHTML = pressure + "Hg";
-        document.getElementById("val-clouds").innerHTML = cloudy + "%";
-        document.getElementById("val-humidity").innerHTML = humidity + "%";
-        document.getElementById("place_name").innerHTML = name;
-        document.getElementById("val-rain").innerHTML = rain + "mm";
-        
-        console.log(temp, name, pressure, humidity, rain)
-    });
-    
-    const weekday = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-    const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-    
-    var today = new Date();
-    var Time = today.getHours()-12 + ":" + today.getMinutes() + ":" + today.getSeconds() +"-"+ weekday[today.getDay()]+","+ today.getDate()+"-"+month[today.getMonth()]+"'"+today.getFullYear();
-    
-   let time_data=  document.getElementById("#val_time")
-   console.log(time_data)
+        //Javascript code    
+        let queryUrl = "https://api.openweathermap.org/data/2.5/onecall?";
+        let latitude = 16.9496097 //JSON.parse('{{ latitude | tojson }}'); // jinja into js 
+        let longitude = 78.1835173// JSON.parse('{{  longitude| tojson }}');
 
+        console.log(latitude, longitude)
+        let lat = `lat=${latitude}&`;
+        let lon = `lon=${longitude}&`;
+        let apiOptions = "units=metric&exclude=minutely,alerts&";
+        let apiKey = "appid=c4fe2ed814a1059fb3a453bdb4f13002";
+        let file = queryUrl + lat + lon + apiOptions + apiKey;
+
+
+        fetch(file)
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+
+
+        fetch(file)
+            .then((response) => response.json())
+            .then((data) => {
+                // Weather main data
+
+                let main = data.daily[0].weather[0].main;
+                let description = data.current.weather[0].description;
+                let temp = Math.round(data.current.temp);
+                let cloudy = data.current.clouds
+                let pressure = data.current.pressure;
+                let humidity = data.current.humidity;
+                let name = "chintal";
+                let rain = data.daily[0].rain;
+
+                // document.getElementById("wrapper-description").innerHTML = description;
+                document.getElementById("temp_data").innerHTML = temp;
+                document.getElementById("val-pressure").innerHTML = pressure;
+                document.getElementById("val-clouds").innerHTML = cloudy + "%";
+                document.getElementById("val-humidity").innerHTML = humidity + "%";
+                document.getElementById("place_name").innerHTML = name;
+                document.getElementById("val-rain").innerHTML = rain + "mm";
+
+                console.log(temp, name, pressure, humidity, rain, main)
+
+                //icons
+
+                let iconBaseUrl = "http://openweathermap.org/img/wn/";
+                let size = "@2x"
+                let iconFormat = ".png";
+
+                // Today
+                let iconCodeToday = data.current.weather[0].icon;
+                let iconFullyUrlToday = iconBaseUrl + iconCodeToday + size + iconFormat;
+                document.getElementById("wrapper-icon-today").src = iconFullyUrlToday;
+                //console.log(iconFullyUrlToday)
+
+                //backgrounds 
+
+                switch (main) {
+                    case "Snow":
+                        document.body.style.backgroundImage =
+                            "url('https://images.unsplash.com/photo-1516431883659-655d41c09bf9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c25vd2luZ3xlbnwwfHwwfHw%3D&w=1000&q=80')";
+                        break;
+                    case "Clouds":
+                        document.body.style.backgroundImage =
+                            "url('https://www.pixelstalk.net/wp-content/uploads/2016/03/Beautiful-clouds-wallpaper-hd.jpg')";
+                        break;
+                    case "Fog":
+                        document.body.style.backgroundImage =
+                            "url('https://cdn.britannica.com/76/179676-138-DF4D600A/Overview-fog-forms.jpg?w=800&h=450&c=crop')";
+                        break;
+                    case "Rain":
+                        document.body.style.backgroundImage =
+                            "url('https://images.unsplash.com/photo-1493314894560-5c412a56c17c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')";
+                        break;
+                    case "Clear":
+                        document.body.style.backgroundImage = "url('https://media.istockphoto.com/photos/sunny-bright-blue-sky-with-clouds-picture-id471298483?b=1&k=20&m=471298483&s=170667a&w=0&h=YiNMUNjB9WUGCiI1yn6K6HuUBcXLm16V_7V5BCsqkNI=')";
+                        break;
+                    case "Thunderstorm":
+                        document.body.style.backgroundImage =
+                            "url('https://images.unsplash.com/photo-1600377927594-ceae8f8981a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c3Rvcm15JTIwd2VhdGhlcnxlbnwwfHwwfHw%3D&w=1000&q=80')";
+                        break;
+                    default:
+                        document.body.style.backgroundImage =
+                            "url('https://media.istockphoto.com/photos/sunny-bright-blue-sky-with-clouds-picture-id471298483?b=1&k=20&m=471298483&s=170667a&w=0&h=YiNMUNjB9WUGCiI1yn6K6HuUBcXLm16V_7V5BCsqkNI=')";
+                        break;
+                }
+            });
+
+        const weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        var today = new Date();
+        var Time = today.getHours() - 12 + ":" + today.getMinutes() + ":" + today.getSeconds() + "-" + weekday[today.getDay()] + "," + today.getDate() + "-" + month[today.getMonth()] + "'" + today.getFullYear();
+
+        let time_data = document.getElementById("#val_time")
+        console.log(time_data)
+
+
+
+
+
+   
 </script>
 <style>
     * {
@@ -68,7 +119,7 @@
     body {
         height: 100vh;
         width: 100%;
-        background: url("\\static\\images\\glass-1655320810485-6873.jpg");
+
         overflow-x: hidden;
     }
 
@@ -121,7 +172,6 @@
         width: 633px;
         height: 720px;
         left: 902px;
-        top: 0px;
         background: rgba(85, 100, 115, 0.49);
         mix-blend-mode: normal;
         backdrop-filter: blur(14px);
@@ -132,7 +182,7 @@
         width: 443px;
         height: 0px;
         left: 940px;
-        top: 120px;
+        top: 85px;
         border: 0.5px solid #FFFFFF;
         transform: rotate(-0.25deg);
     }
@@ -142,7 +192,7 @@
         width: 397px;
         height: 57px;
         left: 924px;
-        top: 147px;
+        top: 116px;
         font-family: 'Open Sans';
         font-style: normal;
         font-weight: 400;
@@ -158,7 +208,7 @@
         width: 186px;
         height: 39px;
         left: 937px;
-        top: 450px;
+        top: 417px;
 
         font-family: 'Open Sans';
         font-style: normal;
@@ -177,7 +227,7 @@
         width: 293px;
         height: 101px;
         left: 1200px;
-        top: 412px;
+        top: 381px;
         font-family: 'Lato';
         font-style: normal;
         font-weight: 500;
@@ -202,7 +252,8 @@
 
     </div>
     <div class="place_name">
-        <h1 id="place_name">Chintal</h1>
+        <h1 id="place_name">{{city_name}}</h1>
+        <h1 style="left:637px ;bottom:12px;"><img id="wrapper-icon-today" src="#" alt=""></h1>
         <p style="
             font-size: 32px;
             width: 396px;
@@ -210,10 +261,10 @@
             left: 263px;
             top: 583px;
             font-weight: 100;
-            font-style: normal; "id="val_time">{{current_time|safe}}</p>
+            font-style: normal; " id="val_time">{{current_time|safe}}</p>
     </div>
 
-  
+
 
     <div class="side_bar">
         <p style="
@@ -221,7 +272,7 @@
             width: auto;
             height: 40px;
             left: 9px;
-            top: 60px;
+            top: 28px;
             font-family: 'Open Sans';
             font-style: normal;
             font-weight: 400;
@@ -255,7 +306,7 @@
         <p class="city" style="margin-top:101px">Alwal</p>
         <p class="city" style="margin-top:151px">Gatkesar</p>
     </div>
-    <p id="line" style="top:361px;"></p>
+    <p id="line" style="top:341px;"></p>
 </div>
 <div class="weather_details">
     <h1 style="
@@ -263,7 +314,7 @@
 width: 337px;
 height: 60px;
 left: 969px;
-top: 382px;
+top: 359px;
 font-family: 'Open Sans';
 font-style: normal;
 font-weight: 700;
@@ -274,16 +325,16 @@ letter-spacing: 0.02em;
 color: #FFFFFF;">weather Details </h1>
 
     <p class="cloudy ">Cloudy</p>
-    <p class="cloudy " style="top:508px;">Pressure</p>
-    <p class="cloudy " style="top:575px;">Humidty</p>
-    <p class="cloudy " style="top:639px;">Rain</p>
+    <p class="cloudy " style="top:480px;">Pressure</p>
+    <p class="cloudy " style="top:546px;">Humidty</p>
+    <p class="cloudy " style="top:612px;">Rain</p>
 
 </div>
 <div class="values">
     <p class="val" id="val-clouds"></p>
-    <p class="val" id="val-pressure" style="top:469px;"></p>
-    <p class="val" id="val-humidity" style="top:533px;"></p>
-    <p class="val" id="val-rain" style="top:593px;"></p>
+    <p class="val" id="val-pressure" style="top:443px;"></p>
+    <p class="val" id="val-humidity" style="top:508px;"></p>
+    <p class="val" id="val-rain" style="top:575px;"></p>
 </div>
 
 <note style="position:absolute ;bottom:10px;font-family:'lato',sans-serif;letter-spacing:2px">
