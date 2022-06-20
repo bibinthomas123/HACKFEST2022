@@ -29,7 +29,7 @@
             .then((data) => {
                 // Weather main data
 
-                let main = data.daily[0].weather[0].main;
+                let main = data.current.weather[0].main;
                 let description = data.current.weather[0].description;
                 let temp = Math.round(data.current.temp);
                 let cloudy = data.current.clouds
@@ -69,7 +69,7 @@
                         break;
                     case "Clouds":
                         document.body.style.backgroundImage =
-                            "url('https://www.pixelstalk.net/wp-content/uploads/2016/03/Beautiful-clouds-wallpaper-hd.jpg')";
+                            "url('https://images.unsplash.com/photo-1484715444575-8f126523872f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80')";
                         break;
                     case "Fog":
                         document.body.style.backgroundImage =
@@ -102,11 +102,6 @@
         let time_data = document.getElementById("#val_time")
         console.log(time_data)
 
-
-
-
-
-   
 </script>
 <style>
     * {
@@ -119,7 +114,7 @@
     body {
         height: 100vh;
         width: 100%;
-
+        background-size: contain;
         overflow-x: hidden;
     }
 
