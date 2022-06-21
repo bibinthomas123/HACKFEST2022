@@ -1,0 +1,43 @@
+{%extends "base.html"%}
+{%block title %}Error{% endblock %}
+{%block head %}
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    #image{
+        width: 500px;
+        height: 500px;
+        position: absolute;
+        top:50px;
+        right:228px;
+       
+    }
+    .oops{
+        font-size: 113px;}
+    .oops{
+        position: absolute;
+        top: 20%;
+    }
+    p{
+        position: absolute;
+        top: 41%;    }
+</style>
+
+
+{%endblock%}
+
+{%block body %}
+     <div class="container">
+       <nav>
+        <h1 class="oops">OopS!</h1>
+        <p class="looking">We can't seem to find the page that your looking for</p>
+        <p style="margin-top: 28px;">Error code : <span style="font-weight: 900;">{{error_code}}</span></p>
+        <img src="/static/images/404.png" id="image" alt="">
+       </nav>
+     </div>
+
+{%endblock%}
+

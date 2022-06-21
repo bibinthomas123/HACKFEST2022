@@ -11,6 +11,7 @@ from datetime import date, datetime
 views = Blueprint('views', __name__)
 
 
+
 @views.route('/')
 def home():
     Y = date.today().year    # dummy leap year to allow input X-02-29 (leap day)
@@ -30,6 +31,23 @@ def home():
     return render_template("Home.html" ,current_season = get_season(date.today()) )
 
 
+
+
+
+
+#error handler 
+
+@views.errorhandler(404)  #catches the error 404
+def error404(error):
+    return render_template("error_page.html" ,error_code=404), 404 
+
+@views.errorhandler(500)  #catches the error 404
+def error500(error):
+    return render_template("error_page.html" ,error_code=500), 500
+
+
+
+
 @views.route('/search')
 def search():
     return render_template("search.html")
@@ -47,9 +65,11 @@ def results():
     d4 = today.strftime("%b-%d-%Y")
 
     HTML_current_time = str(current_time) + " " + str(d4)
+    
     return render_template("results.html", current_time=HTML_current_time,latitude=latitude,longitude=longitude)
 
 
 @views.route("/aboutUs")
 def aboutUs():
     return render_template("aboutus.html")
+

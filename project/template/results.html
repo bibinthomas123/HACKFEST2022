@@ -5,14 +5,16 @@
 <!-- <script src="/project/static/js/index.js"></script> -->
 <script>
 
-
+function runOnce(){
+    
     function timeConverter(UNIX_timestamp) {
         var a = new Date(UNIX_timestamp * 1000);
         var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         var year = a.getFullYear();
         var month = months[a.getMonth()];
         var date = a.getDate();
-        var hour = a.getHours();
+        var hour = a.getHours(); //12hrs format
+        hour = (hour % 12) || 12;
         var min = a.getMinutes();
         var sec = a.getSeconds();
         var time = hour + ':' + min;
@@ -24,7 +26,8 @@
     let queryUrl = "https://api.openweathermap.org/data/2.5/onecall?";
     let latitude = 16.9496097 //JSON.parse('{{ latitude | tojson }}'); // jinja into js 
     let longitude = 78.1835173// JSON.parse('{{  longitude| tojson }}');
-
+    //let name = JSON.parse('{{name|safe}}')
+    console.log(name)
     console.log(latitude, longitude)
     let lat = `lat=${latitude}&`;
     let lon = `lon=${longitude}&`;
@@ -54,11 +57,13 @@
             let humidity = data.current.humidity;
             let name = "chintal";
             let rain = data.daily[0].rain;
+            let temp_max= data.daily[0].temp.max
+            let temp_min= data.daily[0].temp.min
 
-            document.getElementById("main").innerHTML = main;
-            document.getElementById("dew_point").innerHTML = dew_point;
-            document.getElementById("sun_rise").innerHTML = timeConverter(sun_rise);
-            document.getElementById("sun_set").innerHTML = timeConverter(sun_set);
+            document.getElementById("max").innerHTML =temp_max + " °c";  // degree sign symbol code alt+0176
+            document.getElementById("min").innerHTML = temp_min + " °c";
+            document.getElementById("sun_rise").innerHTML = timeConverter(sun_rise) + " AM";
+            document.getElementById("sun_set").innerHTML = timeConverter(sun_set) + " PM";
             document.getElementById("temp_data").innerHTML = temp;
             document.getElementById("val-pressure").innerHTML = pressure;
             document.getElementById("val-clouds").innerHTML = cloudy + "%";
@@ -78,7 +83,7 @@
             let iconCodeToday = data.current.weather[0].icon;
             let iconFullyUrlToday = iconBaseUrl + iconCodeToday + size + iconFormat;
             document.getElementById("wrapper-icon-today").src = iconFullyUrlToday;
-            //console.log(iconFullyUrlToday)
+            console.log(iconFullyUrlToday)
 
             //backgrounds 
 
@@ -121,6 +126,9 @@
 
     let time_data = document.getElementById("#val_time")
     console.log(time_data)
+    setTimeout(runOnce, 300000); //updates the weather every 5 min 1000ms * 300s(5*60) =300000
+}
+runOnce()
 
 </script>
 <style>
@@ -256,7 +264,7 @@
     .thin {
         font-family: 'Open Sans';
         font-style: normal;
-        font-weight: 700;
+        font-weight: 350;
         font-size: 28px;
         line-height: 38px;
         letter-spacing: 0.02em;
@@ -325,14 +333,14 @@
         <a href="/search" style="padding: 20px;"><img src="/static/images/search.png" alt=""></a>
     </div>
     <div class="cities  ">
-        <p class="city thin">Description</p>
-        <p class="city thin" style="margin-top:51px;">Dew point</p>
+        <p class="city thin">Max Temp</p>
+        <p class="city thin" style="margin-top:51px;">Min Temp </p>
         <p class="city thin" style="margin-top:101px;">Sun Rise</p>
         <p class="city thin" style="margin-top:151px;">Sun Set</p>
     </div>
     <div class="cities">
-        <p class="city" id="main" style="margin-left:20px ;margin-left: 292px;"></p>
-        <p class="city" id="dew_point" style="margin-top:51px;margin-left: 292px;"></p>
+        <p class="city" id="max" style="margin-left:20px ;margin-left: 292px;"></p>
+        <p class="city" id="min" style="margin-top:51px;margin-left: 292px;"></p>
         <p class="city" id="sun_rise" style="margin-top:101px;margin-left: 292px;"></p>
         <p class="city" id="sun_set" style="margin-top:151px;margin-left: 292px;"></p>
     </div>
@@ -368,7 +376,7 @@ color: #FFFFFF;">weather Details </h1>
 </div>
 
 <note style="position:absolute ;bottom:10px;font-family:'lato',sans-serif;letter-spacing:2px">
-    * Temperature updates every 10 mins
+    * Report updated every 5 mins
 </note>
 
 <div class="dos_and_donts"
