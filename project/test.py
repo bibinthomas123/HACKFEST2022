@@ -1,8 +1,4 @@
-from ast import Param
-from audioop import add
-from email.headerregistry import Address
-from urllib import response
-import requests
+
 # key ="TxwE4e9Bh5MGvlLIQDJmyfcD1xuIwfn4"
 # location ="Balanagar"
 # url= "http://www.mapquestapi.com/geocoding/v1/address?key="+key+"&location="+location
@@ -36,17 +32,37 @@ import requests
 #https://api.msn.com/weather/current?latLongList=28.652%2C77.2315%7C18.969%2C72.8212%7C17.366%2C78.476%7C12.9767%2C77.5753%7C22.5656%2C88.3702&locale=en-in&units=C&appId=9e21380c-ff19-4c78-b4ea-19558e93a5d3&apiKey=j5i4gDqHL6nGYwx5wi5kRhXjtf2c5qgFX9fzfk0TOo&ocid=msftweather&wrapOData=false
 
 
+# address = "plot no 70, flat no 302 ,sri sainath aashray,padmanagar phase 1,chintal"
 
-base_url ="https://maps.googleapis.com/maps/api/geocode/json?"
+# params={
+#     'key':api_key,
+#     'address':address
+# }
 
-address = "plot no 70, flat no 302 ,sri sainath aashray,padmanagar phase 1,chintal"
+# response = requests.get(base_url, params=params)
 
-params={
-    'key':api_key,
-    'address':address
-}
+# data = response.json()
+# print(data)
 
-response = requests.get(base_url, params=params)
 
-data = response.json()
-print(data)
+# import requests
+
+# API_KEY = 'AIzaSyAphEsU0Xl_pOm6XX1sLp9K69fUoQ92HP4'
+
+# def getGeoCoord(address):
+#     params = {
+#         'key': API_KEY,
+#         'address': address.replace(' ', '+')
+#     }
+
+#     base_url = 'https://maps.googleapis.com/maps/api/geocode/json?'
+#     response = requests.get(base_url, params=params)
+#     data = response.json()
+#     if data['status'] == 'OK':
+#         result = data['results'][0]
+#         location = result['geometry']['location']
+#         print( location['lat'], location['lng'])
+#     else:
+#         print("error")
+    
+# getGeoCoord("india")

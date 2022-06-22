@@ -2,7 +2,13 @@
 {%block title %}Search{% endblock %}
 
 {%block head %}
-
+<script>
+  
+        let data = document.getElementById("search").value
+        sessionStorage.setItem("data", data);
+        console.log(data)
+    
+</script>
 <style>
     :root {
         --blue: #233BD7;
@@ -74,9 +80,7 @@
         top: 203px;
         background: rgba(56, 82, 57, 0.71);
         border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+
     }
 
     .white {
@@ -165,10 +169,14 @@
 
     <div class="search">
         <div class="text">
-            <form  action="{{ url_for('views.results',city_name=city_name) }} " method="post">
-                <input type="text" name="text" id="search" placeholder="Enter the place area...">
-                <button type="submit" class="btn"> <img src="/static/images/search.png" alt=""></button>
-           </form>
+            <form >
+                <input type="text" name="text" id="search" placeholder="Enter the place area..." value=""  >
+            </form>
+            <a href="/results" >
+                <div class="btn">
+                    <img src="/static/images/search.png" style="padding:8px 0px 0px 2px" alt="">
+                </div>
+            </a>
         </div>
     </div>
 </section>
