@@ -1,9 +1,8 @@
 from geopy.geocoders import Nominatim
-import requests
-import json
 import time
+from flask import request,redirect
 from django.shortcuts import render
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template,url_for
 from datetime import date
 from test import *
 from datetime import date, datetime
@@ -41,24 +40,24 @@ def home():
 def error404(error):
     return render_template("error_page.html" ,error_code=404), 404 
 
-@views.errorhandler(500)  #catches the error 404
+@views.errorhandler(500)  #catches the error 500
 def error500(error):
     return render_template("error_page.html" ,error_code=500), 500
 
 
 
 
-@views.route('/search')
+@views.route('/search',methods=["GET","POST"])
 def search():
-    return render_template("search.html")
+     if request.method == "POST":
+        city_name = request.form['city_name']
+        return redirect(url_for("results",city_name=city_name))
+     return render_template("search.html")
 
 
-@views.route('/results')
-def results():
-    geolocator = Nominatim(user_agent="MyApp")
-    location = geolocator.geocode("Hyderabad")
-    latitude=  location.latitude
-    longitude= location.longitude
+@views.route('/results/<city_name>')
+def results(city_name):
+
     t = time.localtime()
     current_time = time.strftime("%I:%M", t)
     today = date.today()
@@ -66,7 +65,7 @@ def results():
 
     HTML_current_time = str(current_time) + " " + str(d4)
     
-    return render_template("results.html", current_time=HTML_current_time,latitude=latitude,longitude=longitude)
+    return render_template("results.html", current_time=HTML_current_time,city_name=city_name)
 
 
 @views.route("/aboutUs")
