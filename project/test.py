@@ -37,7 +37,6 @@ import requests
 
 
 
-api_key ="AIzaSyCmw8L6plPlJtvhOdTYvzQApk7mcWFwqmg"
 base_url ="https://maps.googleapis.com/maps/api/geocode/json?"
 
 address = "plot no 70, flat no 302 ,sri sainath aashray,padmanagar phase 1,chintal"
