@@ -45,24 +45,22 @@
 # print(data)
 
 
-# import requests
+import requests
 
-# API_KEY = 'AIzaSyAphEsU0Xl_pOm6XX1sLp9K69fUoQ92HP4'
 
-# def getGeoCoord(address):
-#     params = {
-#         'key': API_KEY,
-#         'address': address.replace(' ', '+')
-#     }
+address ="padmanagar phase 1,chintal"
+API_KEY = 'AIzaSyB8uwWqb4hpqj_NetvyPeU4HObmvW8xj6s'
 
-#     base_url = 'https://maps.googleapis.com/maps/api/geocode/json?'
-#     response = requests.get(base_url, params=params)
-#     data = response.json()
-#     if data['status'] == 'OK':
-#         result = data['results'][0]
-#         location = result['geometry']['location']
-#         print( location['lat'], location['lng'])
-#     else:
-#         print("error")
+
+params = {
+        'key': API_KEY,
+        'address': address.replace(' ', '+')
+}
+     
+base_url = 'https://maps.googleapis.com/maps/api/geocode/json?'
+response = requests.get(base_url, params=params)
+data = response.json()
+print(data)
     
-# getGeoCoord("india")
+    
+

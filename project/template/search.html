@@ -3,7 +3,7 @@
 
 {%block head %}
 <script>
-  
+        // transfering data using Cookies 
         let data = document.getElementById("search").value
         sessionStorage.setItem("data", data);
         console.log(data)
@@ -80,6 +80,9 @@
         top: 203px;
         background: rgba(56, 82, 57, 0.71);
         border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
     }
 
@@ -169,13 +172,11 @@
 
     <div class="search">
         <div class="text">
-            <form >
+            <form method="post" action="/results">
                 <input type="text" name="text" id="search" placeholder="Enter the place area..." value=""  >
+                <input type="submit" src="/static/images/search.png" class="btn">
             </form>
-            <a href="/results" >
-                <div class="btn">
-                    <img src="/static/images/search.png" style="padding:8px 0px 0px 2px" alt="">
-                </div>
+            
             </a>
         </div>
     </div>
