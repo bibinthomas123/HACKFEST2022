@@ -1,12 +1,12 @@
-from geopy.geocoders import Nominatim
 from flask import request
 import json
 import time
-from django.shortcuts import render
 from flask import Blueprint, render_template
 from datetime import date
 from test import *
 from datetime import date, datetime
+import http.client, urllib.parse
+import json
 
 views = Blueprint('views', __name__)
 
@@ -53,11 +53,26 @@ def results():
     if request.method == "POST":
         city_name = request.form.get("text")
 
-    geolocator = Nominatim(user_agent="MyApp")
-    location = geolocator.geocode("Hyderabad")
-    latitude = location.latitude
-    longitude = location.longitude
-    t = time.localtime()
+    conn = http.client.HTTPConnection('geocode.xyz')
+
+    params = urllib.parse.urlencode({
+            'auth': '156997931047459624760x95680',
+            'locate': city_name,
+            'region': 'IN',
+            'json': 1,
+            })
+
+    conn.request('GET', '/?{}'.format(params))
+
+    res = conn.getresponse()
+    data = res.read()
+    json_data = json.loads(data)
+    longitude = json_data["longt"]
+    latitude  = json_data["latt"]
+
+    print(data)
+
+    t =time.localtime()
     current_time = time.strftime("%I:%M", t)
     today = date.today()
     d4 = today.strftime("%b-%d-%Y")

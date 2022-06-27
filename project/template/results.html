@@ -30,8 +30,8 @@
         
 
         let queryUrl = "https://api.openweathermap.org/data/2.5/onecall?";
-        let latitude = 16.9496097 //JSON.parse('{{ latitude | tojson }}'); // jinja into js 
-        let longitude = 78.1835173// JSON.parse('{{  longitude| tojson }}');
+        let latitude =  JSON.parse('{{ latitude | tojson }}'); // jinja into js //16.9496097
+        let longitude = JSON.parse('{{  longitude| tojson }}'); //78.1835173
       
     
         console.log(latitude, longitude)
