@@ -2,7 +2,7 @@
 {%block title %}Results{% endblock %}
 {%block head %}
 
-<!-- <script src="/project/static/js/index.js"></script> -->
+
 <script>
 
     function runOnce() {
@@ -21,15 +21,7 @@
             return time;
         }
 
-
-        //Javascript code  
-
-
-
-        
-        
-
-        let queryUrl = "https://api.openweathermap.org/data/2.5/onecall?";
+       let queryUrl = "https://api.openweathermap.org/data/2.5/onecall?";
         let latitude =  JSON.parse('{{ latitude | tojson }}'); // jinja into js //16.9496097
         let longitude = JSON.parse('{{  longitude| tojson }}'); //78.1835173
       
@@ -50,12 +42,12 @@
         fetch(file)
             .then((response) => response.json())
             .then((data) => {
-                // Weather main data
+               
 
                 let main = data.current.weather[0].main;
                 let description = data.current.weather[0].description;
                 let temp = Math.round(data.current.temp);
-               // let name = "Chintal";
+               
                 let cloudy = data.current.clouds
                 let pressure = data.current.pressure;
                 let dew_point = data.current.dew_point;
@@ -123,6 +115,14 @@
                         document.body.style.backgroundImage =
                             "url('https://images.unsplash.com/photo-1600377927594-ceae8f8981a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c3Rvcm15JTIwd2VhdGhlcnxlbnwwfHwwfHw%3D&w=1000&q=80')";
                         break;
+                    case "Haze":
+                        document.body.style.backgroundImage =
+                            "url('https://images.unsplash.com/photo-1533757704860-384affeed946?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')";
+                        break;
+                    case "Clear":
+                        document.body.style.backgroundImage =
+                            "url('https://img.hoodline.com/uploads/story/image/932076/istock__..featured_image_3..sunny_3.jpg.jpg')";
+                        break;
                     default:
                         document.body.style.backgroundImage =
                             "url('https://media.istockphoto.com/photos/sunny-bright-blue-sky-with-clouds-picture-id471298483?b=1&k=20&m=471298483&s=170667a&w=0&h=YiNMUNjB9WUGCiI1yn6K6HuUBcXLm16V_7V5BCsqkNI=')";
@@ -130,11 +130,7 @@
                 }
             });
 
-        const weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-        const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-        var today = new Date();
-        var Time = today.getHours() - 12 + ":" + today.getMinutes() + ":" + today.getSeconds() + "-" + weekday[today.getDay()] + "," + today.getDate() + "-" + month[today.getMonth()] + "'" + today.getFullYear();
+        
 
       
         setTimeout(runOnce, 300000); //updates the weather every 5 min 1000ms * 300s(5*60) =300000
@@ -153,7 +149,7 @@
     body {
         height: 100vh;
         width: 100%;
-        background-size: contain;
+        background-size: 100% 100%;
         overflow-x: hidden;
     }
 
@@ -422,18 +418,16 @@ color: #FFFFFF;">weather Details </h1>
             background: #28C041;">
 
                 <ul style="padding-top:25px ;">
-                    <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque, voluptas! Eveniet quasi,
-                        doloremque
-                        officia ea animi nam sed illo fuga.</li>
-                    <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque, voluptas! Eveniet quasi,
-                        doloremque
-                        officia ea animi nam sed illo fuga.</li>
-                    <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque, voluptas! Eveniet quasi,
-                        doloremque
-                        officia ea animi nam sed illo fuga.</li>
-                    <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque, voluptas! Eveniet quasi,
-                        doloremque
-                        officia ea animi nam sed illo fuga.</li>
+                    <li>Move away from all glass and breakable objects.</li>
+                    <li>Identify safe places</li>
+                    <li>If needed, locate your emergency kit</li>
+                    <li>Stay in communication with local authorities and disaster responders.</li>
+                    <li>Evacuate if told to(Hurricanes).</li>
+                    <li>Hide under a strong desk or table, and cover your head and neck(Eathquake)</li>
+                    <li>If you’re surrounded with fire, try to stay close to a body of water, stream, or less flammable area such as the backside of a mountain (Wild Fire)</li>
+                    <li>If in a car, drive away from the area that is in the path of the tornado(Tornado)</li>
+                    <li>Sterilize the bath tub and fill it with water(Hurricanes)</li>
+                    <li>Take photos for insurance(Hurricanes)</li>
 
                 </ul>
             </div>
@@ -475,14 +469,16 @@ color: #FFFFFF;">weather Details </h1>
      
      ">
                 <ul style="padding-top:25px ;">
-                    <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque, voluptas! Eveniet quasi,
-                        doloremque officia ea animi nam sed illo fuga.</li>
-                    <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque, voluptas! Eveniet quasi,
-                        doloremque officia ea animi nam sed illo fuga.</li>
-                    <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque, voluptas! Eveniet quasi,
-                        doloremque officia ea animi nam sed illo fuga.</li>
-                    <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque, voluptas! Eveniet quasi,
-                        doloremque officia ea animi nam sed illo fuga.</li>
+                    <li> Move around or try to outrun the situation</li>
+                    <li>Avoid all electrical equipment</li>
+                    <li>Do not go in a body of water</li>
+                    <li>Do not run a generator indoors</li>
+                    <li>Go near any live wires or debris</li>
+                    <li>If outdoors, do not go into a building until it is inspected and deemed safe(Eathquake)</li>
+                    <li>Take shelter in a flimsy structure(Tornado)</li>
+                    <li>Do not go outside during the storm(Hurricanes)</li>
+                    <li>Return home until deemed safe(wild Fire)</li>
+                    <li>If you’re in a vehicle in a directly affected area, do not leave the engine on or circulate outdoor air. Get low in the vehicle with the engine off and cover yourself with a blanket.(wild Fire)</li>
 
                 </ul>
 

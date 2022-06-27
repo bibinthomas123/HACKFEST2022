@@ -11,24 +11,6 @@ import json
 views = Blueprint('views', __name__)
 
 
-@views.route('/')
-def home():
-    Y = date.today().year    # dummy leap year to allow input X-02-29 (leap day)
-    seasons = [('winter', (date(Y,  1,  1),  date(Y,  2, 20))),
-               ('summer', (date(Y,  3, 21),  date(Y,  4, 20))),
-               ('Rainy', (date(Y,  6, 21),  date(Y,  9, 22))),
-               ('autumn', (date(Y,  9, 23),  date(Y, 12, 20))),
-               ('winter', (date(Y, 12, 21),  date(Y, 12, 31)))]
-
-    def get_season(now):
-        if isinstance(now, datetime):
-            now = now.date()
-            now = now.replace(year=Y)
-        return next(season for season, (start, end) in seasons
-                    if start <= now <= end)
-
-    return render_template("Home.html", current_season=get_season(date.today()))
-
 
 # error handler
 
@@ -40,6 +22,28 @@ def error404(error):
 @views.errorhandler(500)  # catches the error 404
 def error500(error):
     return render_template("error_page.html", error_code=500), 500
+
+
+
+@views.route('/')
+def home():
+    Y = date.today().year    # dummy leap year to allow input X-02-29 (leap day)
+    seasons = [('winter', (date(Y,  1,  1),  date(Y,  2, 20))),
+                ('summer', (date(Y,  3, 21),  date(Y,  4, 20))),
+                ('Rainy', (date(Y,  6, 21),  date(Y,  9, 22))),
+                ('autumn', (date(Y,  9, 23),  date(Y, 12, 20))),
+                ('winter', (date(Y, 12, 21),  date(Y, 12, 31)))]
+
+    def get_season(now):
+        if isinstance(now, datetime):
+            now = now.date()
+            now = now.replace(year=Y)
+        return next(season for season, (start, end) in seasons
+                    if start <= now <= end)
+
+    return render_template("Home.html", current_season=get_season(date.today()))
+
+
 
 
 @views.route('/search')
@@ -63,14 +67,23 @@ def results():
             })
 
     conn.request('GET', '/?{}'.format(params))
+    
 
     res = conn.getresponse()
-    data = res.read()
-    json_data = json.loads(data)
-    longitude = json_data["longt"]
-    latitude  = json_data["latt"]
+    if res.status==200:   #checks the server response code 
+        data = res.read()
+        json_data = json.loads(data)
+        if  json_data["longt"] =="0.00000" and json_data["latt"]=="0.00000":  #if the user enters an invalid place name the api returns lat and lon value as 0.0000 0.0000 
+            error = "Invalid place name or Try within India or check the spelling and try again "
+            return render_template ("Error.html", error=error ,error_code=404)
+        else:
+            latitude  = json_data["latt"]
+            longitude = json_data["longt"]
+            print(data)
+    else:
+        error404()   
+  
 
-    print(data)
 
     t =time.localtime()
     current_time = time.strftime("%I:%M", t)
