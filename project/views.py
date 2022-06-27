@@ -51,7 +51,7 @@ def search():
 def results():
     city_name = None
     if request.method == "POST":
-        city_name = request.form.get("name")
+        city_name = request.form.get("text")
 
     geolocator = Nominatim(user_agent="MyApp")
     location = geolocator.geocode("Hyderabad")

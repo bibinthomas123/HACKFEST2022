@@ -25,8 +25,6 @@
         //Javascript code  
 
 
-        var city_name =  sessionStorage.getItem("data");
-        console.log(city_name);
 
         
         
@@ -34,30 +32,30 @@
         let queryUrl = "https://api.openweathermap.org/data/2.5/onecall?";
         let latitude = 16.9496097 //JSON.parse('{{ latitude | tojson }}'); // jinja into js 
         let longitude = 78.1835173// JSON.parse('{{  longitude| tojson }}');
-        console.log(name)
+      
+    
         console.log(latitude, longitude)
         let lat = `lat=${latitude}&`;
         let lon = `lon=${longitude}&`;
         let apiOptions = "units=metric&exclude=minutely,alerts&";
         let apiKey = "appid=c4fe2ed814a1059fb3a453bdb4f13002";
         let file = queryUrl + lat + lon + apiOptions + apiKey;
-        let name = JSON.parse('{{name|safe}}')
-        
-        
+
+
         fetch(file)
             .then((response) => response.json())
             .then((data) => console.log(data))
-            
-            
-            fetch(file)
+
+
+        fetch(file)
             .then((response) => response.json())
             .then((data) => {
                 // Weather main data
-                
+
                 let main = data.current.weather[0].main;
                 let description = data.current.weather[0].description;
                 let temp = Math.round(data.current.temp);
-                
+               // let name = "Chintal";
                 let cloudy = data.current.clouds
                 let pressure = data.current.pressure;
                 let dew_point = data.current.dew_point;
@@ -73,7 +71,7 @@
 
                 document.getElementById("max").innerHTML = temp_max + " °c";  // degree sign symbol code alt+0176
                 document.getElementById("min").innerHTML = temp_min + " °c";
-                document.getElementById("place_name").innerHTML = name;
+              //  document.getElementById("place_name").innerHTML = name;
                 document.getElementById("sun_rise").innerHTML = timeConverter(sun_rise) + " AM";
                 document.getElementById("sun_set").innerHTML = timeConverter(sun_set) + " PM";
                 document.getElementById("temp_data").innerHTML = temp;
@@ -296,7 +294,7 @@
 
     </div>
     <div class="place_name">
-        <h1 id="place_name" value="">place name</h1>
+        <h1 id="place_name" value="">{{city_name}}</h1>
         <h1 style="left:637px ;bottom:12px;"><img id="wrapper-icon-today" src="#" alt=""></h1>
         <p style="
             font-size: 32px;
