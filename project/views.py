@@ -60,7 +60,7 @@ def results():
     conn = http.client.HTTPConnection('geocode.xyz')
 
     params = urllib.parse.urlencode({
-            'auth': '156997931047459624760x95680',
+            'auth': 'YOUR_API_KEY',
             'locate': city_name,
             'region': 'IN',
             'json': 1,
